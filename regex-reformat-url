@@ -1,0 +1,47 @@
+# HTML FILE TO SUBMIT TO SCRIPT
+
+<form action="eqbl.php" method="post">
+<p>Paste text:</p><p>
+  <textarea name="text" id="text" cols="50" rows="50"></textarea>
+</p>
+
+<p>
+  <input type="submit" name="button" id="button" value="Submit">
+</p>
+
+
+
+# SCRIPT TO FORMAT THE INPUT
+
+//A script that finds all the URLs in the source code
+//and converts them to the encoded style of Client's 
+//import.
+
+$text = $_POST['text'];
+
+// The Regular Expression filters
+
+//finds a PDF link in the code
+$reg_exUrl = '[(http:\/\/www.example.org.uk\/sites\/files\/example\/)(.*.\.[a-zA-Z]{2,4})]';
+//finds a standard link in the code
+$link = '[(http:\/\/www.example.org.uk\/)(.*.\")]';
+
+
+// Check if there is a url in the text
+if(preg_match($reg_exUrl, $text, $url)) {
+       // rawencode
+       $raw=preg_replace($reg_exUrl, $url[1].$url[2], $text);
+} else {
+    echo "no match";
+}
+
+ $raw=str_replace("http://www.example.org.uk/sites/files/example/","/sites/default/files/2019-01/",$raw);
+
+       echo $raw;
+
+preg_match_all($link, $raw, $links, PREG_SET_ORDER);
+echo "<br /><br />Links:<br />";
+foreach ($links as $l) {
+    $link=substr($l[0],0,-1);
+  echo "<a href='".$link."'>$link</a>\n";
+}

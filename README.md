@@ -1,1 +1,1 @@
-# Various Tools Created in PHP to do reformat strings with regex
+# Various Tools Created in PHP which reformat strings with regex

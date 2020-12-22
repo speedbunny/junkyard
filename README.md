@@ -1,1 +1,1 @@
-# Various Tools Created in PHP which reformat strings with regex
+PHP string manipulation, LaTeX snippets, laid to rest in the junkyard
